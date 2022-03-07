@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/utils/favorites.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/info_item.dart';
+import '../provider/favs_provider.dart';
+import '../widgets/favs_item.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final favsProvider = Provider.of<FavsProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("Saved Suggestions")),
-          actions: [
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(Icons.format_list_bulleted),
-                )),
-          ],
+          title: const Center(child: Text("Saved Suggestions")),
         ),
         body: ListView.builder(
-          itemCount: Favorite.favs.length,
+          itemCount: favsProvider.favs.length,
           itemBuilder: (context, index) {
-            return InfoItem(
-              name: Favorite.favs[index],
-              asFavs: true,
+            return ChangeNotifierProvider.value(
+              value: favsProvider.favs[index],
+              child: const FavsItem(),
             );
           },
         ));

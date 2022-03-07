@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/provider/favs_provider.dart';
 import 'package:my_app/screens/favorite_screen.dart';
 import 'package:my_app/widgets/info_item.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavsProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -40,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Center(child: Text(widget.title)),
           actions: [
             Padding(
-                padding: EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -48,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         MaterialPageRoute(
                             builder: (context) => const FavoriteScreen()));
                   },
-                  child: Icon(Icons.format_list_bulleted),
+                  child: const Icon(Icons.format_list_bulleted),
                 )),
           ],
         ),
