@@ -3,29 +3,30 @@ import 'package:my_app/utils/favorites.dart';
 
 import '../widgets/info_item.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+class FavoriteScreen extends StatefulWidget {
+  static const routeName = '/Favorite';
+  FavoriteScreen({Key? key}) : super(key: key);
 
   @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  @override
   Widget build(BuildContext context) {
+    final favs = ModalRoute.of(context)!.settings.arguments as Favorite;
+
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("Saved Suggestions")),
-          actions: [
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(Icons.format_list_bulleted),
-                )),
-          ],
+          title: const Center(child: Text("Saved Suggestions")),
         ),
         body: ListView.builder(
-          itemCount: Favorite.favs.length,
+          itemCount: favs.getFavoriteCount(),
           itemBuilder: (context, index) {
             return InfoItem(
-              name: Favorite.favs[index],
+              name: favs.getFavoriteItem(index),
               asFavs: true,
+              favorite: favs,
             );
           },
         ));

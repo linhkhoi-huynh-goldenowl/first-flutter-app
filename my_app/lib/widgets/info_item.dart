@@ -1,10 +1,17 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:my_app/utils/favorites.dart';
 
 class InfoItem extends StatefulWidget {
   final String name;
+  final Favorite favorite;
   final bool asFavs;
-  const InfoItem({Key? key, required this.name, required this.asFavs})
+  const InfoItem(
+      {Key? key,
+      required this.name,
+      required this.asFavs,
+      required this.favorite})
       : super(key: key);
 
   @override
@@ -30,7 +37,7 @@ class _InfoItemState extends State<InfoItem> {
                 onTap: () {
                   setState(() {
                     isRed = !isRed;
-                    Favorite.addFavorite(widget.name);
+                    widget.favorite.addFavorite(widget.name);
                   });
                 },
                 child: Icon(isRed ? Icons.favorite : Icons.favorite_outline,
