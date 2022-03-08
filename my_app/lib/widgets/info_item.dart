@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:my_app/models/info_person.dart';
 import 'package:my_app/provider/favs_provider.dart';
@@ -30,15 +32,19 @@ class _InfoItemState extends State<InfoItem> {
         ),
         widget.asFavs
             ? Container()
-            : GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isRed = !isRed;
-                    favsProvider.addFavorite(InfoPerson(name: widget.name));
-                  });
+            : Consumer<FavsProvider>(
+                builder: (context, favs, child) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isRed = !isRed;
+                      });
+                      favsProvider.addFavorite(InfoPerson(name: widget.name));
+                    },
+                    child: Icon(isRed ? Icons.favorite : Icons.favorite_outline,
+                        color: isRed ? Colors.red : null),
+                  );
                 },
-                child: Icon(isRed ? Icons.favorite : Icons.favorite_outline,
-                    color: isRed ? Colors.red : null),
               ),
       ]),
     );

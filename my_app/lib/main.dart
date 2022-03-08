@@ -4,6 +4,8 @@ import 'package:my_app/screens/favorite_screen.dart';
 import 'package:my_app/widgets/info_item.dart';
 import 'package:provider/provider.dart';
 
+import 'utils/favorites.dart';
+
 void main() {
   runApp(
     MultiProvider(
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Startup Name Generator'),
+      routes: {FavoriteScreen.routeName: (context) => FavoriteScreen()},
     );
   }
 }
@@ -41,6 +44,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   IconData heart = Icons.favorite_outline;
+  Favorite favs = Favorite();
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FavoriteScreen()));
+                    Navigator.pushNamed(context, FavoriteScreen.routeName,
+                        arguments: favs);
                   },
                   child: const Icon(Icons.format_list_bulleted),
                 )),
@@ -64,19 +66,18 @@ class _MyHomePageState extends State<MyHomePage> {
         body: ListView(
           children: const [
             InfoItem(name: "Alex", asFavs: false),
-            InfoItem(name: "Ben", asFavs: false),
-            InfoItem(name: "Jin", asFavs: false),
-            InfoItem(name: "Crown", asFavs: false),
-            InfoItem(name: "Jupiter", asFavs: false),
-            InfoItem(name: "Gegalt", asFavs: false),
-            InfoItem(name: "Bisti", asFavs: false),
-            InfoItem(name: "Fame", asFavs: false),
-            InfoItem(name: "Base", asFavs: false),
-            InfoItem(name: "Minu", asFavs: false),
-            InfoItem(name: "Gogo", asFavs: false),
-            InfoItem(name: "Banna", asFavs: false),
-            InfoItem(name: "Appp", asFavs: false),
-            InfoItem(name: "Uber", asFavs: false),
+            InfoItem(name: "Boob", asFavs: false),
+            InfoItem(name: "Binm", asFavs: false),
+            InfoItem(name: "Resti", asFavs: false),
+            InfoItem(name: "Godla", asFavs: false),
+            InfoItem(name: "MyMax", asFavs: false),
+            InfoItem(name: "Befa", asFavs: false),
+            InfoItem(name: "OnLaf", asFavs: false),
+            InfoItem(name: "Mess", asFavs: false),
+            InfoItem(name: "Roof", asFavs: false),
+            InfoItem(name: "Yuka", asFavs: false),
+            InfoItem(name: "Minq", asFavs: false),
+            InfoItem(name: "Fu", asFavs: false),
           ],
         ));
   }

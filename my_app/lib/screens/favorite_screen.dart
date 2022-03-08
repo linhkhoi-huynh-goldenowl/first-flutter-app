@@ -4,12 +4,19 @@ import 'package:provider/provider.dart';
 import '../provider/favs_provider.dart';
 import '../widgets/favs_item.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+class FavoriteScreen extends StatefulWidget {
+  static const routeName = '/Favorite';
+  FavoriteScreen({Key? key}) : super(key: key);
 
+  @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     final favsProvider = Provider.of<FavsProvider>(context);
+
     return Scaffold(
         appBar: AppBar(
           title: const Center(child: Text("Saved Suggestions")),
