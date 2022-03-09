@@ -4,8 +4,6 @@ import 'package:my_app/screens/favorite_screen.dart';
 import 'package:my_app/widgets/info_item.dart';
 import 'package:provider/provider.dart';
 
-import 'utils/favorites.dart';
-
 void main() {
   runApp(
     MultiProvider(
@@ -44,7 +42,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   IconData heart = Icons.favorite_outline;
-  Favorite favs = Favorite();
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, FavoriteScreen.routeName,
-                        arguments: favs);
+                    Navigator.pushNamed(context, FavoriteScreen.routeName);
                   },
                   child: const Icon(Icons.format_list_bulleted),
                 )),
