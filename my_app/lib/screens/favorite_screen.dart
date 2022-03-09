@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/utils/favorites.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/info_item.dart';
+import '../provider/favs_provider.dart';
+import '../widgets/favs_item.dart';
 
 class FavoriteScreen extends StatefulWidget {
   static const routeName = '/Favorite';
@@ -14,19 +15,18 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
-    final favs = ModalRoute.of(context)!.settings.arguments as Favorite;
+    final favsProvider = Provider.of<FavsProvider>(context);
 
     return Scaffold(
         appBar: AppBar(
           title: const Center(child: Text("Saved Suggestions")),
         ),
         body: ListView.builder(
-          itemCount: favs.getFavoriteCount(),
+          itemCount: favsProvider.favs.length,
           itemBuilder: (context, index) {
-            return InfoItem(
-              name: favs.getFavoriteItem(index),
-              asFavs: true,
-              favorite: favs,
+            return ChangeNotifierProvider.value(
+              value: favsProvider.favs[index],
+              child: const FavsItem(),
             );
           },
         ));

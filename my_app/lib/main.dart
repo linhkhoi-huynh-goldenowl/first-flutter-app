@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/provider/favs_provider.dart';
 import 'package:my_app/screens/favorite_screen.dart';
 import 'package:my_app/widgets/info_item.dart';
-
-import 'utils/favorites.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavsProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +42,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   IconData heart = Icons.favorite_outline;
-  Favorite favs = Favorite();
 
   @override
   Widget build(BuildContext context) {
@@ -47,28 +53,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, FavoriteScreen.routeName,
-                        arguments: favs);
+                    Navigator.pushNamed(context, FavoriteScreen.routeName);
                   },
                   child: const Icon(Icons.format_list_bulleted),
                 )),
           ],
         ),
         body: ListView(
-          children: [
-            InfoItem(name: "Alex", asFavs: false, favorite: favs),
-            InfoItem(name: "Boob", asFavs: false, favorite: favs),
-            InfoItem(name: "Binm", asFavs: false, favorite: favs),
-            InfoItem(name: "Resti", asFavs: false, favorite: favs),
-            InfoItem(name: "Godla", asFavs: false, favorite: favs),
-            InfoItem(name: "MyMax", asFavs: false, favorite: favs),
-            InfoItem(name: "Befa", asFavs: false, favorite: favs),
-            InfoItem(name: "OnLaf", asFavs: false, favorite: favs),
-            InfoItem(name: "Mess", asFavs: false, favorite: favs),
-            InfoItem(name: "Roof", asFavs: false, favorite: favs),
-            InfoItem(name: "Yuka", asFavs: false, favorite: favs),
-            InfoItem(name: "Minq", asFavs: false, favorite: favs),
-            InfoItem(name: "Fu", asFavs: false, favorite: favs),
+          children: const [
+            InfoItem(name: "Alex", asFavs: false),
+            InfoItem(name: "Boob", asFavs: false),
+            InfoItem(name: "Binm", asFavs: false),
+            InfoItem(name: "Resti", asFavs: false),
+            InfoItem(name: "Godla", asFavs: false),
+            InfoItem(name: "MyMax", asFavs: false),
+            InfoItem(name: "Befa", asFavs: false),
+            InfoItem(name: "OnLaf", asFavs: false),
+            InfoItem(name: "Mess", asFavs: false),
+            InfoItem(name: "Roof", asFavs: false),
+            InfoItem(name: "Yuka", asFavs: false),
+            InfoItem(name: "Minq", asFavs: false),
+            InfoItem(name: "Fu", asFavs: false),
           ],
         ));
   }
