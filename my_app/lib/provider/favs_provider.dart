@@ -9,12 +9,16 @@ class FavsProvider with ChangeNotifier {
   }
 
   void addFavorite(InfoPerson info) {
-    if ((_favs.singleWhere((it) => it.name == info.name, orElse: () => null)) !=
-        null) {
+    if (checkName(info.name)) {
       _favs.removeWhere((item) => item.name == info.name);
     } else {
       _favs.add(info);
     }
     notifyListeners();
+  }
+
+  bool checkName(String name) {
+    return (_favs.singleWhere((it) => it.name == name, orElse: () => null)) !=
+        null;
   }
 }

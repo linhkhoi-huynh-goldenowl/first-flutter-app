@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Startup Name Generator'),
-      routes: {FavoriteScreen.routeName: (context) => FavoriteScreen()},
+      routes: {FavoriteScreen.routeName: (context) => const FavoriteScreen()},
     );
   }
 }
@@ -61,19 +61,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: const [
-            InfoItem(name: "Alex", asFavs: false),
-            InfoItem(name: "Boob", asFavs: false),
-            InfoItem(name: "Binm", asFavs: false),
-            InfoItem(name: "Resti", asFavs: false),
-            InfoItem(name: "Godla", asFavs: false),
-            InfoItem(name: "MyMax", asFavs: false),
-            InfoItem(name: "Befa", asFavs: false),
-            InfoItem(name: "OnLaf", asFavs: false),
-            InfoItem(name: "Mess", asFavs: false),
-            InfoItem(name: "Roof", asFavs: false),
-            InfoItem(name: "Yuka", asFavs: false),
-            InfoItem(name: "Minq", asFavs: false),
-            InfoItem(name: "Fu", asFavs: false),
+            InfoItem(name: "Alex"),
+            InfoItem(name: "Boob"),
+            InfoItem(name: "Binm"),
+            InfoItem(name: "Resti"),
+            InfoItem(name: "Godla"),
+            InfoItem(name: "MyMax"),
+            InfoItem(name: "Befa"),
+            InfoItem(name: "OnLaf"),
+            InfoItem(name: "Mess"),
+            InfoItem(name: "Roof"),
+            InfoItem(name: "Yuka"),
+            InfoItem(name: "Minq"),
+            InfoItem(name: "Fuve"),
           ],
         ));
   }
