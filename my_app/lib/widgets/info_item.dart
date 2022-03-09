@@ -36,9 +36,7 @@ class _InfoItemState extends State<InfoItem> {
                 builder: (context, favs, child) {
                   return GestureDetector(
                     onTap: () {
-                      setState(() {
-                        isRed = !isRed;
-                      });
+                      isRed = !isRed;
                       favsProvider.addFavorite(InfoPerson(name: widget.name));
                     },
                     child: Icon(isRed ? Icons.favorite : Icons.favorite_outline,
